@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+# README.md
 
-First, run the development server:
+````md
+# Developer Swaleh Portfolio
+
+Modern full-stack portfolio website built using Next.js, TypeScript, Tailwind CSS v4, Supabase, PostgreSQL, and Framer Motion.
+
+Designed with a minimal Vercel-inspired aesthetic focused on performance, scalability, accessibility, and clean engineering architecture.
+
+---
+
+# Preview
+
+Features:
+
+- Modern responsive UI
+- Smooth subtle animations
+- Accessible design system
+- Dynamic project system
+- Advanced contact form validation
+- Supabase integration
+- PostgreSQL database
+- SEO optimization
+- Optimized image loading
+- Mobile responsive navigation
+- Realtime-ready backend architecture
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
+- React Hot Toast
+
+## Backend
+
+- Supabase
+- PostgreSQL
+
+## Deployment
+
+- Vercel
+
+---
+
+# Features
+
+## Homepage
+
+Includes:
+
+- Hero section
+- Skills overview
+- Experience section
+- CTA section
+- Responsive navigation
+- Smooth animations
+
+---
+
+## About Page
+
+Includes:
+
+- Developer profile
+- Dynamic age calculation
+- Education information
+- Skills overview
+- Radial proficiency indicators
+- Technology stack
+- Animated UI sections
+
+---
+
+## Projects Page
+
+Includes:
+
+- Featured projects
+- Dynamic project cards
+- Project descriptions
+- Technology stack display
+- Live demo links
+- Repository links
+
+---
+
+## Contact System
+
+Includes:
+
+- Advanced validation
+- East African phone validation
+- Toast notifications
+- Secure Supabase integration
+- Accessible form controls
+
+---
+
+# Developer Information
+
+## Name
+
+Swaleh Mohamad Swalehe
+
+## Role
+
+Full-Stack Website Developer
+
+## Location
+
+Likoni, Mombasa, Kenya
+
+---
+
+# Education
+
+Bachelor of Science in Civil Engineering  
+Technical University of Mombasa (TUM)
+
+Started:
+September 2025
+
+Expected Graduation:
+Late 2030
+
+---
+
+# Development Journey
+
+Started software development journey in January 2025.
+
+Focused on:
+
+- Frontend engineering
+- Backend systems
+- SQL databases
+- API architecture
+- Modern UI systems
+- Scalable web applications
+
+Core technologies:
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Supabase
+- PostgreSQL
+- Node.js
+
+---
+
+# Installation
+
+## Clone Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/swachizen/portfolio.git
