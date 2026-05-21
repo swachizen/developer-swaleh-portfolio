@@ -193,7 +193,7 @@ export default function AboutPage() {
                 width={700}
                 height={900}
                 priority
-                quality={100, 75}
+                quality={90}
                 className="h-full w-full object-cover"
               />
             </div>
