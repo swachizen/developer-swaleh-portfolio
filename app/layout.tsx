@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://developerswaleh.vercel.app"),
+  metadataBase: new URL("https://developer-swaleh-portfolio.vercel.app"),
 
   title: {
     default: "Developer Swaleh | Full-Stack Website Developer",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     description:
       "Modern full-stack website developer specializing in scalable frontend systems, backend architecture, SQL databases, and high-performance web applications.",
 
-    url: "https://developerswaleh.vercel.app",
+    url: "https://developer-swaleh-portfolio.vercel.app",
 
     siteName: "Developer Swaleh",
 
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://developerswaleh.vercel.app",
+    canonical: "https://developer-swaleh-portfolio.vercel.app",
   },
 
   category: "technology",
