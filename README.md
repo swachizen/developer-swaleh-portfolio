@@ -1,8 +1,3 @@
----
-
-# README.md
-
-````md
 # Developer Swaleh Portfolio
 
 Modern full-stack portfolio website built using Next.js, TypeScript, Tailwind CSS v4, Supabase, PostgreSQL, and Framer Motion.
@@ -110,7 +105,7 @@ Includes:
 
 ## Name
 
-Swaleh Mohamad Swalehe
+Swaleh Mohamad Swaleh
 
 ## Role
 
@@ -127,11 +122,8 @@ Likoni, Mombasa, Kenya
 Bachelor of Science in Civil Engineering  
 Technical University of Mombasa (TUM)
 
-Started:
-September 2025
-
-Expected Graduation:
-Late 2030
+Started: September 2025  
+Expected Graduation: Late 2030
 
 ---
 
@@ -165,4 +157,68 @@ Core technologies:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/swachizen/portfolio.git
+git clone https://github.com/swachizen/developer-swaleh-portfolio.git
+```
+
+## Navigate Into Project
+
+```bash
+cd developer-swaleh-portfolio
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Configure Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://qzuqmhmcmbfcmhlrmfyt.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF6dXFtaG1jbWJmY21obHJtZnl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzc1NzksImV4cCI6MjA5NDc1MzU3OX0.4m9qxuPh6rpnfe863KsFPWJRv16aDQ-GLV2fjCceFtE
+```
+
+## Run Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+# Performance Standards
+
+- Optimized image loading
+- Minimal client-side JavaScript
+- Responsive layouts
+- SEO optimized pages
+- Accessible UI patterns
+- Smooth animations
+- Stable hydration
+- Production-ready architecture
+
+---
+
+# Deployment
+
+Preferred deployment platform:
+
+- Vercel
+
+Deploy instantly:
+
+```bash
+vercel
+```
+
+---
+
+# License
+
+© Developer Swaleh
+
+Swaleh Mohamad Swaleh  
+Engineer & Full-Stack Website Developer
