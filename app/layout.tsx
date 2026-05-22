@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "react-hot-toast";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css";
 
@@ -24,56 +24,83 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio.swaleh.app"),
 
   title: {
-    default: "Developer Swaleh | Full-Stack Website Developer",
+    default:
+      "Developer Swaleh | Full-Stack Website Developer",
     template: "%s | Developer Swaleh",
   },
 
   description:
-    "Swaleh Mohamad Swaleh is a full-stack website developer based in Mombasa, Kenya, specializing in Next.js, TypeScript, Supabase, SQL, backend systems, and modern frontend architecture.",
+    "Swaleh Mohamad Swalehe is a full-stack website developer based in Mombasa, Kenya, specializing in Next.js, TypeScript, Supabase, PostgreSQL, backend systems, and scalable frontend architecture.",
 
   keywords: [
     "Developer Swaleh",
-    "Swaleh Mohamad Swaleh",
+    "Swaleh Mohamad Swalehe",
+    "Swaleh Mohamad Swalehe Kingunge",
+    "Kingunge",
+    "Kenya Website Developer",
     "Full-Stack Developer",
     "Next.js Developer",
     "TypeScript Developer",
     "Supabase Developer",
+    "PostgreSQL Developer",
     "Frontend Developer Kenya",
     "Backend Developer Kenya",
     "Web Developer Mombasa",
-    "Civil Engineering Student",
     "React Developer",
     "Portfolio Website",
+    "Software Engineer Kenya",
+    "Modern Web Developer",
+    "Civil Engineer Student at TUM",
   ],
 
   authors: [
     {
-      name: "Swaleh Mohamad Swaleh",
+      name: "Swaleh Mohamad Swalehe",
+      url: "https://portfolio.swaleh.app",
     },
   ],
 
-  creator: "Swaleh Mohamad Swaleh",
+  creator: "Swaleh Mohamad Swalehe",
 
   publisher: "Developer Swaleh",
+
+  category: "technology",
+
+  applicationName: "Developer Swaleh Portfolio",
+
+  referrer: "origin-when-cross-origin",
 
   robots: {
     index: true,
     follow: true,
+
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "https://portfolio.swaleh.app",
   },
 
   openGraph: {
-    title: "Developer Swaleh | Full-Stack Website Developer",
+    type: "website",
 
-    description:
-      "Modern full-stack website developer specializing in scalable frontend systems, backend architecture, SQL databases, and high-performance web applications.",
+    locale: "en_US",
 
     url: "https://portfolio.swaleh.app",
 
     siteName: "Developer Swaleh",
 
-    locale: "en_US",
+    title:
+      "Developer Swaleh | Full-Stack Website Developer",
 
-    type: "website",
+    description:
+      "Modern full-stack website developer specializing in scalable frontend systems, backend architecture, SQL databases, and high-performance web applications.",
 
     images: [
       {
@@ -88,19 +115,30 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Developer Swaleh | Full-Stack Website Developer",
+    title:
+      "Developer Swaleh | Full-Stack Website Developer",
 
     description:
-      "Portfolio of Swaleh Mohamad Swaleh, a modern full-stack website developer building scalable digital experiences.",
+      "Portfolio of Swaleh Mohamad Swalehe, a modern full-stack website developer building scalable digital experiences.",
+
+    creator: "@developerswaleh",
 
     images: ["/opengraph-image.png"],
   },
 
-  alternates: {
-    canonical: "https://portfolio.swaleh.app",
-  },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "96x96",
+        type: "image/x-icon",
+      },
+    ],
 
-  category: "technology",
+    shortcut: ["/favicon.ico"],
+
+    apple: ["/favicon.ico"],
+  },
 };
 
 export const viewport: Viewport = {
@@ -108,6 +146,16 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   themeColor: "#000000",
+  colorScheme: "dark",
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Swaleh Mohamad",
+  url: "https://portfolio.swaleh.app",
+  description:
+    "Modern full-stack portfolio website of Swaleh Mohamad Swalehe.",
 };
 
 export default function RootLayout({
@@ -118,11 +166,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+
         {/* Noise Texture */}
         <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.015] [background-image:url('/noise.png')]" />
 
@@ -169,7 +225,9 @@ export default function RootLayout({
             },
           }}
         />
-       <SpeedInsights />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );
