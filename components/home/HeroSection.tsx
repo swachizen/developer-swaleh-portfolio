@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import ArrowUpRight from "lucide-react/dist/esm/icons/arrow-up-right";
-import Mail from "lucide-react/dist/esm/icons/mail";
-import GitBranch from "lucide-react/dist/esm/icons/git-branch";
+import {
+  ArrowUpRight,
+  Mail,
+  GitBranch,
+} from "lucide-react";
 
 import {
   FaLinkedin,

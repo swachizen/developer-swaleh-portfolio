@@ -1,8 +1,10 @@
-import BriefcaseBusiness from "lucide-react/dist/esm/icons/briefcase-business";
-import Cpu from "lucide-react/dist/esm/icons/cpu";
-import Database from "lucide-react/dist/esm/icons/database";
-import Globe from "lucide-react/dist/esm/icons/globe";
-import ArrowUpRight from "lucide-react/dist/esm/icons/arrow-up-right";
+import {
+  BriefcaseBusiness,
+  Cpu,
+  Database,
+  Globe,
+  ArrowUpRight,
+} from "lucide-react";
 
 const skills = [
   {

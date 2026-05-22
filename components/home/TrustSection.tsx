@@ -1,6 +1,8 @@
-import BadgeCheck from "lucide-react/dist/esm/icons/badge-check";
-import ShieldCheck from "lucide-react/dist/esm/icons/shield-check";
-import Sparkles from "lucide-react/dist/esm/icons/sparkles";
+import {
+  BadgeCheck,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 
 const trustItems = [
   {
