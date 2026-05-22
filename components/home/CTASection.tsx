@@ -1,16 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { ArrowDown } from "lucide-react";
+const expertise = [
+  "Frontend Engineering",
+  "Backend Systems",
+  "Scalable Architecture",
+];
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden pb-32 pt-10">
+    <section
+      aria-labelledby="cta-heading"
+      className="relative overflow-hidden py-24 md:py-32"
+    >
       {/* Background Glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-blue-500/[0.06] blur-3xl" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div className="absolute left-1/2 top-0 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-blue-500/[0.05] blur-3xl" />
 
         <div className="absolute bottom-0 right-0 h-[260px] w-[260px] rounded-full bg-blue-500/[0.04] blur-3xl" />
       </div>
@@ -19,104 +28,122 @@ export default function CTASection() {
         <motion.div
           initial={{
             opacity: 0,
-            y: 30,
+            y: 20,
           }}
           whileInView={{
             opacity: 1,
             y: 0,
           }}
           transition={{
-            duration: 0.7,
+            duration: 0.6,
+            ease: "easeOut",
           }}
-          viewport={{ once: true }}
-          className="relative"
+          viewport={{
+            once: true,
+          }}
+          className="
+            relative
+            overflow-hidden
+            rounded-[2.5rem]
+            border
+            border-white/10
+            bg-white/[0.03]
+            px-8
+            py-14
+            backdrop-blur-xl
+            md:px-14
+            md:py-20
+          "
         >
+          {/* Inner Glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+          >
+            <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-blue-500/[0.08] blur-3xl" />
+          </div>
+
           {/* Badge */}
           <div
             className="
-              mb-8
               inline-flex
               items-center
               gap-2
               rounded-full
               border
               border-blue-500/20
-              bg-blue-500/10
+              bg-blue-500/[0.08]
               px-4
               py-2
               text-sm
+              font-medium
               text-blue-300
-              backdrop-blur-xl
             "
           >
-            <span className="h-2 w-2 rounded-full bg-blue-500" />
+            <span
+              aria-hidden="true"
+              className="h-2 w-2 rounded-full bg-blue-500"
+            />
 
-            Let&apos;s Build Something Great
+            Let&apos;s Build Something Exceptional
           </div>
 
-          {/* Heading */}
-          <div className="max-w-4xl">
-            <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">
-              Ready to transform your ideas into
-              scalable digital products?
+          {/* Content */}
+          <div className="mt-10 max-w-4xl">
+            <h2
+              id="cta-heading"
+              className="
+                text-4xl
+                font-semibold
+                tracking-[-0.05em]
+                text-white
+                md:text-6xl
+              "
+            >
+              Transforming ambitious ideas into
+              scalable digital experiences.
             </h2>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
-              Let&apos;s collaborate on modern web
-              applications, scalable systems, and
-              high-performance digital
-              experiences engineered with clean
-              architecture and exceptional user
-              experience.
+              Focused on modern web applications,
+              scalable systems, clean architecture,
+              and refined user experiences built
+              for long-term performance and growth.
             </p>
           </div>
 
-          {/* CTA */}
-          <div className="mt-12 flex flex-wrap items-center gap-5">
-            <Link
-              href="#contact"
-              scroll
-              className="
-                group
-                inline-flex
-                items-center
-                gap-3
-                rounded-2xl
-                border
-                border-blue-500/20
-                bg-blue-500
-                px-7
-                py-4
-                text-sm
-                font-medium
-                text-white
-                shadow-[0_10px_30px_rgba(59,130,246,0.22)]
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:border-blue-400
-                hover:bg-blue-400
-                hover:shadow-[0_16px_40px_rgba(59,130,246,0.32)]
-              "
-            >
-              Start A Project
-
-              <ArrowDown
+          {/* Expertise */}
+          <ul
+            className="
+              mt-12
+              flex
+              flex-wrap
+              items-center
+              gap-4
+              text-sm
+              text-zinc-500
+            "
+          >
+            {expertise.map((item) => (
+              <li
+                key={item}
                 className="
-                  h-4
-                  w-4
-                  transition-transform
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/[0.03]
+                  px-4
+                  py-2
+                  transition-colors
                   duration-300
-                  group-hover:translate-y-0.5
+                  hover:border-blue-500/20
+                  hover:text-zinc-300
                 "
-              />
-            </Link>
-
-            <p className="text-sm text-zinc-500">
-              Scroll directly to the contact form
-              in the footer section.
-            </p>
-          </div>
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </section>

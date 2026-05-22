@@ -32,7 +32,7 @@ function ProjectCard({
       className="
         group
         overflow-hidden
-        rounded-[2rem]
+        rounded-3xl
         border
         border-white/10
         bg-white/[0.03]
@@ -41,7 +41,7 @@ function ProjectCard({
         duration-300
         hover:-translate-y-1
         hover:border-blue-500/20
-        hover:bg-white/[0.04]
+        hover:bg-white/[0.05]
       "
     >
       {/* Cover Image */}
@@ -50,7 +50,9 @@ function ProjectCard({
           src={project.cover_image}
           alt={project.title}
           fill
+          priority={false}
           loading="lazy"
+          quality={85}
           sizes="
             (max-width: 768px) 100vw,
             (max-width: 1280px) 50vw,
@@ -60,29 +62,32 @@ function ProjectCard({
             object-cover
             transition-transform
             duration-500
-            group-hover:scale-[1.03]
+            will-change-transform
+            group-hover:scale-[1.02]
           "
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="p-7">
-        <div className="mb-4 inline-flex rounded-full border border-blue-500/10 bg-blue-500/[0.08] px-3 py-1 text-xs font-medium text-blue-400">
+      <div className="space-y-6 p-7">
+        <div className="inline-flex items-center rounded-full border border-blue-500/10 bg-blue-500/[0.08] px-3 py-1 text-xs font-medium text-blue-400">
           Featured Project
         </div>
 
-        <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white">
-          {project.title}
-        </h3>
+        <div>
+          <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white">
+            {project.title}
+          </h3>
 
-        <p className="mt-4 line-clamp-3 text-sm leading-7 text-zinc-400">
-          {project.short_description}
-        </p>
+          <p className="mt-4 line-clamp-3 text-sm leading-7 text-zinc-400">
+            {project.short_description}
+          </p>
+        </div>
 
-        <div className="mt-6 rounded-2xl border border-white/10 bg-black/30 p-5">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
+        <div className="rounded-2xl border border-white/10 bg-black/30 p-5">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
             Problem Solved
           </p>
 
@@ -90,6 +95,26 @@ function ProjectCard({
             {project.problem_solved}
           </p>
         </div>
+
+        <Link
+          href={`/projects/${project.slug}`}
+          aria-label={`View project ${project.title}`}
+          className="
+            inline-flex
+            items-center
+            gap-2
+            text-sm
+            font-medium
+            text-blue-400
+            transition-colors
+            duration-300
+            hover:text-blue-300
+          "
+        >
+          View Case Study
+
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </article>
   );
@@ -100,26 +125,27 @@ function ProjectSkeleton() {
     <div
       className="
         overflow-hidden
-        rounded-[2rem]
+        rounded-3xl
         border
         border-white/10
         bg-white/[0.03]
         backdrop-blur-xl
       "
+      aria-hidden="true"
     >
-      <div className="aspect-[16/10] animate-pulse bg-white/[0.04]" />
+      <div className="aspect-[16/10] animate-pulse bg-white/[0.05]" />
 
-      <div className="space-y-4 p-7">
-        <div className="h-6 w-40 animate-pulse rounded-full bg-white/[0.05]" />
+      <div className="space-y-5 p-7">
+        <div className="h-5 w-32 animate-pulse rounded-full bg-white/[0.05]" />
 
         <div className="h-8 w-3/4 animate-pulse rounded-xl bg-white/[0.05]" />
 
         <div className="space-y-3">
           <div className="h-4 w-full animate-pulse rounded bg-white/[0.05]" />
 
-          <div className="h-4 w-[90%] animate-pulse rounded bg-white/[0.05]" />
+          <div className="h-4 w-[92%] animate-pulse rounded bg-white/[0.05]" />
 
-          <div className="h-4 w-[75%] animate-pulse rounded bg-white/[0.05]" />
+          <div className="h-4 w-[76%] animate-pulse rounded bg-white/[0.05]" />
         </div>
 
         <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-5">
@@ -127,7 +153,7 @@ function ProjectSkeleton() {
 
           <div className="h-4 w-full animate-pulse rounded bg-white/[0.05]" />
 
-          <div className="h-4 w-[85%] animate-pulse rounded bg-white/[0.05]" />
+          <div className="h-4 w-[84%] animate-pulse rounded bg-white/[0.05]" />
         </div>
       </div>
     </div>
@@ -147,6 +173,8 @@ export default function FeaturedProjectsSection() {
   >(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchProjects() {
       try {
         setLoading(true);
@@ -154,16 +182,14 @@ export default function FeaturedProjectsSection() {
         const { data, error } =
           await supabase
             .from("projects")
-            .select(
-              `
-                id,
-                title,
-                slug,
-                short_description,
-                problem_solved,
-                cover_image
-              `
-            )
+            .select(`
+              id,
+              title,
+              slug,
+              short_description,
+              problem_solved,
+              cover_image
+            `)
             .eq("featured", true)
             .order("created_at", {
               ascending: false,
@@ -174,23 +200,36 @@ export default function FeaturedProjectsSection() {
           throw error;
         }
 
-        setProjects(data || []);
+        if (isMounted) {
+          setProjects(data || []);
+        }
       } catch (err) {
         console.error(err);
 
-        setError(
-          "Unable to load featured projects at the moment."
-        );
+        if (isMounted) {
+          setError(
+            "Unable to load featured projects at the moment."
+          );
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     fetchProjects();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
-    <section className="relative py-24 lg:py-32">
+    <section
+      className="relative overflow-hidden py-24 lg:py-32"
+      aria-labelledby="featured-projects-heading"
+    >
       {/* Background Glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-blue-500/[0.05] blur-3xl" />
@@ -219,7 +258,10 @@ export default function FeaturedProjectsSection() {
               Featured Work
             </div>
 
-            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl lg:text-6xl">
+            <h2
+              id="featured-projects-heading"
+              className="text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl lg:text-6xl"
+            >
               Selected projects engineered
               with modern technologies.
             </h2>
@@ -235,6 +277,7 @@ export default function FeaturedProjectsSection() {
           {/* CTA */}
           <Link
             href="/projects"
+            aria-label="View all projects"
             className="
               inline-flex
               items-center
@@ -282,7 +325,7 @@ export default function FeaturedProjectsSection() {
               flex-col
               items-center
               justify-center
-              rounded-[2rem]
+              rounded-3xl
               border
               border-red-500/10
               bg-red-500/[0.03]
@@ -290,6 +333,7 @@ export default function FeaturedProjectsSection() {
               py-16
               text-center
             "
+            role="alert"
           >
             <div
               className="
@@ -308,7 +352,7 @@ export default function FeaturedProjectsSection() {
             </div>
 
             <h3 className="mt-6 text-2xl font-semibold text-white">
-              Failed To Load Projects
+              Failed to Load Projects
             </h3>
 
             <p className="mt-3 max-w-md text-zinc-400">
@@ -328,7 +372,7 @@ export default function FeaturedProjectsSection() {
                 flex-col
                 items-center
                 justify-center
-                rounded-[2rem]
+                rounded-3xl
                 border
                 border-white/10
                 bg-white/[0.03]

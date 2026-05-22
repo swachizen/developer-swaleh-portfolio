@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
+
 import {
   Loader2,
-  SendHorizonal,
+  SendHorizontal,
   CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
+
 import toast from "react-hot-toast";
 
 import { supabase } from "@/lib/supabaseClient";
@@ -27,12 +31,14 @@ export default function ContactForm() {
     message: "",
   });
 
-  /* ========================================
+  /* ======================================================
      SUCCESS MESSAGE AUTO REMOVE
-  ======================================== */
+  ====================================================== */
 
   useEffect(() => {
-    if (!successMessage) return;
+    if (!successMessage) {
+      return;
+    }
 
     const timer = setTimeout(() => {
       setSuccessMessage("");
@@ -41,14 +47,16 @@ export default function ContactForm() {
     return () => clearTimeout(timer);
   }, [successMessage]);
 
-  /* ========================================
+  /* ======================================================
      VALIDATIONS
-  ======================================== */
+  ====================================================== */
 
   const nameError = useMemo(() => {
     const trimmed = formData.fullName.trim();
 
-    if (!trimmed) return "";
+    if (!trimmed) {
+      return "";
+    }
 
     const words = trimmed.split(/\s+/);
 
@@ -72,7 +80,9 @@ export default function ContactForm() {
   }, [formData.fullName]);
 
   const emailError = useMemo(() => {
-    if (!formData.email) return "";
+    if (!formData.email) {
+      return "";
+    }
 
     const regex =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -83,7 +93,9 @@ export default function ContactForm() {
   }, [formData.email]);
 
   const phoneError = useMemo(() => {
-    if (!formData.phone) return "";
+    if (!formData.phone) {
+      return "";
+    }
 
     const regex =
       /^\+(254|255|256|250)\d{9}$/;
@@ -94,7 +106,9 @@ export default function ContactForm() {
   }, [formData.phone]);
 
   const messageError = useMemo(() => {
-    if (!formData.message) return "";
+    if (!formData.message) {
+      return "";
+    }
 
     const words =
       formData.message.trim().split(/\s+/);
@@ -104,9 +118,9 @@ export default function ContactForm() {
       : "Message must contain at least 5 words.";
   }, [formData.message]);
 
-  /* ========================================
+  /* ======================================================
      COUNTRY DETECTION
-  ======================================== */
+  ====================================================== */
 
   const matchedCountry = useMemo(() => {
     return eastAfricanCountries.find((country) =>
@@ -114,29 +128,31 @@ export default function ContactForm() {
     );
   }, [formData.phone]);
 
-  /* ========================================
+  /* ======================================================
      FORM VALIDITY
-  ======================================== */
+  ====================================================== */
 
   const isValid =
-    formData.fullName &&
-    formData.email &&
-    formData.phone &&
-    formData.country &&
-    formData.county &&
-    formData.message &&
+    Boolean(formData.fullName) &&
+    Boolean(formData.email) &&
+    Boolean(formData.phone) &&
+    Boolean(formData.country) &&
+    Boolean(formData.county) &&
+    Boolean(formData.message) &&
     !nameError &&
     !emailError &&
     !phoneError &&
     !messageError;
 
-  /* ========================================
+  /* ======================================================
      INPUT HANDLER
-  ======================================== */
+  ====================================================== */
 
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      HTMLInputElement |
+      HTMLTextAreaElement |
+      HTMLSelectElement
     >
   ) => {
     const { name, value } = e.target;
@@ -161,16 +177,18 @@ export default function ContactForm() {
     setFormData(updatedData);
   };
 
-  /* ========================================
+  /* ======================================================
      SUBMIT HANDLER
-  ======================================== */
+  ====================================================== */
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
-    if (!isValid) return;
+    if (!isValid || loading) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -209,6 +227,8 @@ export default function ContactForm() {
         message: "",
       });
     } catch (error) {
+      console.error(error);
+
       toast.error(
         "Failed to submit message."
       );
@@ -217,15 +237,40 @@ export default function ContactForm() {
     }
   };
 
+  /* ======================================================
+     SHARED INPUT STYLES
+  ====================================================== */
+
+  const inputClassName =
+    `
+      w-full
+      rounded-2xl
+      border
+      border-white/10
+      bg-[#0a0a0a]
+      px-4
+      py-4
+      text-sm
+      text-white
+      outline-none
+      transition-colors
+      duration-200
+      placeholder:text-zinc-500
+      focus:border-blue-500/40
+      focus:bg-[#0d0d0d]
+      disabled:cursor-not-allowed
+      disabled:opacity-50
+    `;
+
   return (
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h3 className="text-3xl font-semibold tracking-[-0.03em] text-white">
+        <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white">
           Contact Me
-        </h3>
+        </h2>
 
-        <p className="mt-3 text-zinc-400">
+        <p className="mt-3 text-sm leading-7 text-zinc-400">
           Send a message and I&apos;ll respond as
           soon as possible.
         </p>
@@ -235,20 +280,41 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit}
         className="space-y-5"
+        noValidate
       >
-        {/* Full Names */}
+        {/* Full Name */}
         <div className="space-y-2">
+          <label
+            htmlFor="fullName"
+            className="text-sm font-medium text-zinc-300"
+          >
+            Full Name
+          </label>
+
           <input
+            id="fullName"
             type="text"
             name="fullName"
-            placeholder="Full Names"
+            autoComplete="name"
+            placeholder="John Doe"
             value={formData.fullName}
             onChange={handleChange}
+            aria-invalid={Boolean(nameError)}
+            aria-describedby={
+              nameError
+                ? "fullName-error"
+                : undefined
+            }
+            className={inputClassName}
           />
 
           {nameError && (
-            <div className="flex items-center gap-2 text-sm font-medium text-red-500">
-              <CheckCircle2 className="h-4 w-4" />
+            <div
+              id="fullName-error"
+              className="flex items-center gap-2 text-sm text-red-400"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+
               <span>{nameError}</span>
             </div>
           )}
@@ -256,17 +322,37 @@ export default function ContactForm() {
 
         {/* Email */}
         <div className="space-y-2">
+          <label
+            htmlFor="email"
+            className="text-sm font-medium text-zinc-300"
+          >
+            Email Address
+          </label>
+
           <input
+            id="email"
             type="email"
             name="email"
-            placeholder="Email Address"
+            autoComplete="email"
+            placeholder="john@example.com"
             value={formData.email}
             onChange={handleChange}
+            aria-invalid={Boolean(emailError)}
+            aria-describedby={
+              emailError
+                ? "email-error"
+                : undefined
+            }
+            className={inputClassName}
           />
 
           {emailError && (
-            <div className="flex items-center gap-2 text-sm font-medium text-red-500">
-              <CheckCircle2 className="h-4 w-4" />
+            <div
+              id="email-error"
+              className="flex items-center gap-2 text-sm text-red-400"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+
               <span>{emailError}</span>
             </div>
           )}
@@ -274,42 +360,81 @@ export default function ContactForm() {
 
         {/* Phone */}
         <div className="space-y-2">
+          <label
+            htmlFor="phone"
+            className="text-sm font-medium text-zinc-300"
+          >
+            Phone Number
+          </label>
+
           <input
+            id="phone"
             type="tel"
             name="phone"
-            placeholder="+254794828482"
+            autoComplete="tel"
+            inputMode="tel"
+            placeholder="+254712345678"
             value={formData.phone}
             onChange={handleChange}
+            aria-invalid={Boolean(phoneError)}
+            aria-describedby={
+              phoneError
+                ? "phone-error"
+                : undefined
+            }
+            className={inputClassName}
           />
 
           {phoneError && (
-            <div className="flex items-center gap-2 text-sm font-medium text-red-500">
-              <CheckCircle2 className="h-4 w-4" />
+            <div
+              id="phone-error"
+              className="flex items-center gap-2 text-sm text-red-400"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+
               <span>{phoneError}</span>
             </div>
           )}
         </div>
 
         {/* Country */}
-        <div>
+        <div className="space-y-2">
+          <label
+            htmlFor="country"
+            className="text-sm font-medium text-zinc-300"
+          >
+            Country
+          </label>
+
           <input
+            id="country"
             type="text"
             name="country"
-            placeholder="Country"
+            autoComplete="country-name"
+            placeholder="Detected automatically"
             value={matchedCountry?.country || ""}
             readOnly
-            className="cursor-not-allowed opacity-80"
+            className={`${inputClassName} cursor-not-allowed opacity-80`}
           />
         </div>
 
-        {/* County */}
-        <div>
+        {/* County / Region */}
+        <div className="space-y-2">
+          <label
+            htmlFor="county"
+            className="text-sm font-medium text-zinc-300"
+          >
+            County / Region
+          </label>
+
           <select
+            id="county"
             name="county"
             value={formData.county}
             onChange={handleChange}
             disabled={!matchedCountry}
-            className="w-full rounded-xl border border-white/10 bg-[#0a0a0a] px-4 py-4 text-sm text-white outline-none transition-all duration-300 focus:border-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
+            autoComplete="address-level1"
+            className={inputClassName}
           >
             <option value="">
               Select County / Region
@@ -330,17 +455,37 @@ export default function ContactForm() {
 
         {/* Message */}
         <div className="space-y-2">
+          <label
+            htmlFor="message"
+            className="text-sm font-medium text-zinc-300"
+          >
+            Project Details
+          </label>
+
           <textarea
+            id="message"
             name="message"
             rows={6}
-            placeholder="Write your message..."
+            autoComplete="off"
+            placeholder="Tell me about your project, goals, or requirements..."
             value={formData.message}
             onChange={handleChange}
+            aria-invalid={Boolean(messageError)}
+            aria-describedby={
+              messageError
+                ? "message-error"
+                : undefined
+            }
+            className={`${inputClassName} resize-none`}
           />
 
           {messageError && (
-            <div className="flex items-center gap-2 text-sm font-medium text-red-500">
-              <CheckCircle2 className="h-4 w-4" />
+            <div
+              id="message-error"
+              className="flex items-center gap-2 text-sm text-red-400"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+
               <span>{messageError}</span>
             </div>
           )}
@@ -348,23 +493,41 @@ export default function ContactForm() {
 
         {/* Submit */}
         <motion.button
+          type="submit"
           whileTap={{ scale: 0.98 }}
           disabled={!isValid || loading}
-          className={`flex w-full items-center justify-center gap-3 rounded-2xl px-5 py-4 text-sm font-medium transition-all duration-300 ${
-            isValid
-              ? "bg-blue-500 text-white hover:bg-blue-400"
-              : "cursor-not-allowed bg-white/[0.04] text-zinc-500"
-          }`}
+          aria-disabled={!isValid || loading}
+          className={`
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-3
+            rounded-2xl
+            px-5
+            py-4
+            text-sm
+            font-medium
+            transition-colors
+            duration-200
+            ${
+              isValid
+                ? "bg-blue-500 text-white hover:bg-blue-400"
+                : "cursor-not-allowed bg-white/[0.04] text-zinc-500"
+            }
+          `}
         >
           {loading ? (
             <>
               <Loader2 className="h-5 w-5 animate-spin" />
-              Submitting...
+
+              <span>Submitting...</span>
             </>
           ) : (
             <>
-              <SendHorizonal className="h-5 w-5" />
-              Submit Message
+              <SendHorizontal className="h-5 w-5" />
+
+              <span>Submit Message</span>
             </>
           )}
         </motion.button>
@@ -386,9 +549,18 @@ export default function ContactForm() {
                 y: -10,
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.25,
               }}
-              className="flex items-start gap-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4"
+              className="
+                flex
+                items-start
+                gap-3
+                rounded-2xl
+                border
+                border-emerald-500/20
+                bg-emerald-500/10
+                p-4
+              "
             >
               <div className="mt-0.5 rounded-full bg-emerald-500/20 p-1">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
@@ -400,8 +572,8 @@ export default function ContactForm() {
                 </p>
 
                 <p className="mt-1 text-sm leading-6 text-emerald-200/80">
-                  I&apos;ve received your message and
-                  I&apos;ll respond within 24
+                  I&apos;ve received your message
+                  and I&apos;ll respond within 24
                   hours.
                 </p>
               </div>
