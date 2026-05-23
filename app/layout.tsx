@@ -30,13 +30,12 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Swaleh Mohamad Swalehe is a full-stack website developer based in Mombasa, Kenya, specializing in Next.js, TypeScript, Supabase, PostgreSQL, backend systems, and scalable frontend architecture.",
+    "Swaleh Mohamad is a full-stack website developer based in Kenya, specializing in Next.js, TypeScript, Supabase, PostgreSQL, backend systems, and scalable frontend architecture.",
 
   keywords: [
     "Developer Swaleh",
-    "Swaleh Mohamad Swalehe",
-    "Swaleh Mohamad Swalehe Kingunge",
-    "Kingunge",
+    "Swaleh Mohamad",
+    "Swaleh Mohamad",
     "Kenya Website Developer",
     "Full-Stack Developer",
     "Next.js Developer",
@@ -45,22 +44,22 @@ export const metadata: Metadata = {
     "PostgreSQL Developer",
     "Frontend Developer Kenya",
     "Backend Developer Kenya",
-    "Web Developer Mombasa",
+    "Web Developer Kenya",
     "React Developer",
     "Portfolio Website",
     "Software Engineer Kenya",
     "Modern Web Developer",
-    "Civil Engineer Student at TUM",
+    "Civil Engineer Student",
   ],
 
   authors: [
     {
-      name: "Swaleh Mohamad Swalehe",
+      name: "Swaleh Mohamad",
       url: "https://portfolio.swaleh.app",
     },
   ],
 
-  creator: "Swaleh Mohamad Swalehe",
+  creator: "Swaleh Mohamad",
 
   publisher: "Developer Swaleh",
 
@@ -119,7 +118,7 @@ export const metadata: Metadata = {
       "Developer Swaleh | Full-Stack Website Developer",
 
     description:
-      "Portfolio of Swaleh Mohamad Swalehe, a modern full-stack website developer building scalable digital experiences.",
+      "Portfolio of Swaleh Mohamad, a modern full-stack website developer building scalable digital experiences.",
 
     creator: "@developerswaleh",
 
@@ -155,7 +154,7 @@ const structuredData = {
   name: "Swaleh Mohamad",
   url: "https://portfolio.swaleh.app",
   description:
-    "Modern full-stack portfolio website of Swaleh Mohamad Swalehe.",
+    "Modern full-stack portfolio website of Swaleh Mohamad.",
 };
 
 export default function RootLayout({

@@ -36,7 +36,7 @@ export default function HeroSection() {
             {/* Heading */}
             <h1 className="max-w-6xl text-5xl font-semibold leading-[0.95] tracking-[-0.065em] md:text-7xl lg:text-[5.2rem]">
               <span className="text-blue-500">
-                Swaleh Mohamed Swalehe
+                Swaleh Mohamad
               </span>
 
               <span className="mt-4 block text-white">
@@ -138,7 +138,7 @@ export default function HeroSection() {
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
                 <Image
                   src="/profile.webp"
-                  alt="Swaleh Mohamed Swalehe"
+                  alt="Swaleh Mohamad"
                   fill
                   priority
                   fetchPriority="high"
@@ -151,7 +151,7 @@ export default function HeroSection() {
               <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 px-5 py-4">
                 <div>
                   <h2 className="text-base font-semibold text-white">
-                    Swaleh Mohamed Swalehe
+                    Swaleh Mohamad
                   </h2>
 
                   <p className="mt-1 text-sm text-zinc-500">

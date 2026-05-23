@@ -169,8 +169,8 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400 md:text-xl">
-            I&apos;m Swaleh Mohamad Swaleh, a {age}-year-old full-stack website
-            developer based in Likoni, Mombasa, Kenya. I specialize in modern
+            I&apos;m Swaleh Mohamad, a {age}-year-old full-stack website
+            developer based in Kenya. I specialize in modern
             frontend development with TypeScript and scalable backend systems
             powered by Supabase, SQL, and Node.js ecosystems.
           </p>
@@ -189,7 +189,7 @@ export default function AboutPage() {
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0a0a0a] shadow-2xl">
               <Image
                 src="/avatar.jpg"
-                alt="Swaleh Mohamad Swaleh"
+                alt="Swaleh Mohamad"
                 width={700}
                 height={900}
                 priority
@@ -219,7 +219,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-3 text-sm text-zinc-400">
-                  <p>Name: Swaleh Mohamad Swaleh</p>
+                  <p>Name: Swaleh Mohamad</p>
                   <p>Age: {age} Years</p>
                   <p>Born: 05/08/2007</p>
                 </div>
@@ -234,7 +234,6 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-3 text-sm text-zinc-400">
-                  <p>Likoni, Mombasa</p>
                   <p>Kenya</p>
                   <p>East Africa</p>
                 </div>
@@ -264,8 +263,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-3 text-sm text-zinc-400">
-                  <p>Technical University of Mombasa</p>
-                  <p>BSc Civil Engineering</p>
+                  <p>Bachelor of Science in Civil Engineering</p>
                   <p>Expected Graduation: Late 2030</p>
                 </div>
               </div>
@@ -302,7 +300,7 @@ export default function AboutPage() {
 
                 <p>
                   Alongside software engineering, I am also pursuing a degree in
-                  Civil Engineering at the Technical University of Mombasa,
+                  Civil Engineering,
                   which I started in September 2025. Combining engineering
                   principles with modern software development allows me to think
                   structurally, analytically, and systematically when solving
