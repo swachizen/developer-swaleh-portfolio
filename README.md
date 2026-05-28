@@ -105,7 +105,7 @@ Includes:
 
 ## Name
 
-Swaleh Mohamad Swaleh
+Swaleh Mohamad Swalehe
 
 ## Role
 
@@ -113,7 +113,7 @@ Full-Stack Website Developer
 
 ## Location
 
-Likoni, Mombasa, Kenya
+Mombasa, Kenya
 
 ---
 
@@ -177,8 +177,8 @@ npm install
 Create a `.env.local` file:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://qzuqmhmcmbfcmhlrmfyt.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF6dXFtaG1jbWJmY21obHJtZnl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzc1NzksImV4cCI6MjA5NDc1MzU3OX0.4m9qxuPh6rpnfe863KsFPWJRv16aDQ-GLV2fjCceFtE
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-super-long-anon-key
 ```
 
 ## Run Development Server
@@ -220,5 +220,5 @@ vercel
 
 © Developer Swaleh
 
-Swaleh Mohamad Swaleh  
+Swaleh Mohamad Swalehe
 Engineer & Full-Stack Website Developer

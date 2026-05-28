@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   FolderKanban,
@@ -40,10 +40,26 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
+    <header
+      className="
+        fixed
+        inset-x-0
+        top-0
+        z-50
+        border-b
+        border-white/10
+        bg-black
+      "
+    >
       <nav
         aria-label="Primary Navigation"
-        className="container-width flex h-20 items-center justify-between"
+        className="
+          container-width
+          flex
+          h-20
+          items-center
+          justify-between
+        "
       >
         {/* Logo */}
         <Link
@@ -51,9 +67,20 @@ export default function Navbar() {
           aria-label="Homepage"
           className="group flex items-center gap-3"
         >
-          <span className="h-2.5 w-2.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-110" />
+          <span
+            aria-hidden="true"
+            className="
+              h-2.5
+              w-2.5
+              rounded-full
+              bg-blue-500
+              transition-transform
+              duration-200
+              group-hover:scale-110
+            "
+          />
 
-          <span className="text-sm font-medium tracking-wide text-zinc-200">
+          <span className="text-sm font-medium tracking-wide text-zinc-100">
             Developer Swaleh
           </span>
         </Link>
@@ -73,20 +100,37 @@ export default function Navbar() {
                 aria-current={
                   isActive ? "page" : undefined
                 }
-                className={`relative flex items-center gap-2 rounded-full px-5 py-2.5 text-sm transition-colors duration-200 ${
-                  isActive
-                    ? "bg-white/[0.05] text-white"
-                    : "text-zinc-400 hover:bg-white/[0.03] hover:text-white"
-                }`}
+                className={`
+                  relative
+                  flex
+                  items-center
+                  gap-2
+                  overflow-hidden
+                  rounded-full
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-medium
+                  transition-colors
+                  duration-200
+                  ${
+                    isActive
+                      ? "text-white"
+                      : "text-zinc-400 hover:text-white"
+                  }
+                `}
               >
-                <Icon className="h-4 w-4" />
-
-                <span>{link.name}</span>
-
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active"
-                    className="absolute inset-0 rounded-full border border-blue-500/20 bg-blue-500/[0.06]"
+                    className="
+                      absolute
+                      inset-0
+                      rounded-full
+                      border
+                      border-blue-500/20
+                      bg-white/[0.04]
+                    "
                     transition={{
                       type: "spring",
                       stiffness: 320,
@@ -94,6 +138,15 @@ export default function Navbar() {
                     }}
                   />
                 )}
+
+                <span className="relative z-10 flex items-center gap-2">
+                  <Icon
+                    className="h-4 w-4"
+                    aria-hidden="true"
+                  />
+
+                  <span>{link.name}</span>
+                </span>
               </Link>
             );
           })}
@@ -101,26 +154,70 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          {/* Desktop Contact */}
           <Link
             href="#footer"
             scroll
-            className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-zinc-300 transition-colors duration-200 hover:border-blue-500/20 hover:bg-blue-500/[0.08] hover:text-white md:flex"
+            className="
+              hidden
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-white/10
+              bg-[#0a0a0a]
+              px-5
+              py-2.5
+              text-sm
+              font-medium
+              text-zinc-300
+              transition-colors
+              duration-200
+              hover:border-blue-500/20
+              hover:bg-blue-500/[0.08]
+              hover:text-white
+              md:flex
+            "
           >
-            <MessageCircleMore className="h-4 w-4" />
+            <MessageCircleMore
+              className="h-4 w-4"
+              aria-hidden="true"
+            />
 
             <span>Contact Me</span>
           </Link>
 
+          {/* Mobile Contact */}
           <Link
             href="#footer"
             scroll
             aria-label="Contact Me"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-zinc-300 transition-colors duration-200 hover:border-blue-500/20 hover:bg-blue-500/[0.08] hover:text-white md:hidden"
+            className="
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/10
+              bg-[#0a0a0a]
+              text-zinc-300
+              transition-colors
+              duration-200
+              hover:border-blue-500/20
+              hover:bg-blue-500/[0.08]
+              hover:text-white
+              md:hidden
+            "
           >
-            <MessageCircleMore className="h-5 w-5" />
+            <MessageCircleMore
+              className="h-5 w-5"
+              aria-hidden="true"
+            />
           </Link>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
             aria-label={
@@ -131,7 +228,24 @@ export default function Navbar() {
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={toggleMenu}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-zinc-300 transition-colors duration-200 hover:border-blue-500/20 hover:bg-blue-500/[0.08] hover:text-white md:hidden"
+            className="
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/10
+              bg-[#0a0a0a]
+              text-zinc-300
+              transition-colors
+              duration-200
+              hover:border-blue-500/20
+              hover:bg-blue-500/[0.08]
+              hover:text-white
+              md:hidden
+            "
           >
             <AnimatePresence mode="wait">
               {isOpen ? (
@@ -153,7 +267,10 @@ export default function Navbar() {
                     duration: 0.16,
                   }}
                 >
-                  <X className="h-5 w-5" />
+                  <X
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -174,7 +291,10 @@ export default function Navbar() {
                     duration: 0.16,
                   }}
                 >
-                  <Menu className="h-5 w-5" />
+                  <Menu
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -202,7 +322,12 @@ export default function Navbar() {
             transition={{
               duration: 0.18,
             }}
-            className="border-t border-white/10 bg-black/95 md:hidden"
+            className="
+              border-t
+              border-white/10
+              bg-black
+              md:hidden
+            "
           >
             <div className="container-width flex flex-col gap-2 py-6">
               {navLinks.map((link) => {
@@ -220,13 +345,28 @@ export default function Navbar() {
                         ? "page"
                         : undefined
                     }
-                    className={`flex items-center gap-3 rounded-2xl px-5 py-4 text-sm transition-colors duration-200 ${
-                      isActive
-                        ? "border border-blue-500/20 bg-blue-500/[0.08] text-white"
-                        : "border border-transparent bg-white/[0.02] text-zinc-400 hover:border-blue-500/10 hover:bg-white/[0.04] hover:text-white"
-                    }`}
+                    className={`
+                      flex
+                      items-center
+                      gap-3
+                      rounded-2xl
+                      px-5
+                      py-4
+                      text-sm
+                      font-medium
+                      transition-colors
+                      duration-200
+                      ${
+                        isActive
+                          ? "border border-blue-500/20 bg-blue-500/[0.08] text-white"
+                          : "border border-transparent bg-[#0a0a0a] text-zinc-400 hover:border-blue-500/10 hover:bg-white/[0.03] hover:text-white"
+                      }
+                    `}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon
+                      className="h-5 w-5"
+                      aria-hidden="true"
+                    />
 
                     <span>{link.name}</span>
                   </Link>

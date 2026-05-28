@@ -21,7 +21,7 @@ The project follows a minimal Vercel-inspired design philosophy focused on scala
 
 ## Full Name
 
-Swaleh Mohamad Swaleh
+Swaleh Mohamad Swalehe
 
 ## Role
 
@@ -29,7 +29,7 @@ Full-Stack Website Developer
 
 ## Location
 
-Likoni, Mombasa, Kenya
+Mombasa, Kenya
 
 ---
 
@@ -216,5 +216,5 @@ Supabase is used for:
 Environment variables:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-super-long-anon-key

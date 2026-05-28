@@ -169,7 +169,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400 md:text-xl">
-            I&apos;m Swaleh Mohamad, a {age}-year-old full-stack website
+            I&apos;m Swaleh Mohamad Swalehe, a {age}-year-old full-stack website
             developer based in Kenya. I specialize in modern
             frontend development with TypeScript and scalable backend systems
             powered by Supabase, SQL, and Node.js ecosystems.

@@ -30,13 +30,11 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Swaleh Mohamad is a full-stack website developer based in Kenya, specializing in Next.js, TypeScript, Supabase, PostgreSQL, backend systems, and scalable frontend architecture.",
+    "Swaleh Mohamad Swalehe is a full-stack website developer based in Mombasa, Kenya, specializing in Next.js, TypeScript, Supabase, PostgreSQL, backend systems, and scalable frontend architecture.",
 
   keywords: [
     "Developer Swaleh",
-    "Swaleh Mohamad",
-    "Swaleh Mohamad",
-    "Kenya Website Developer",
+    "Swaleh Mohamad Swalehe",
     "Full-Stack Developer",
     "Next.js Developer",
     "TypeScript Developer",
@@ -44,30 +42,31 @@ export const metadata: Metadata = {
     "PostgreSQL Developer",
     "Frontend Developer Kenya",
     "Backend Developer Kenya",
-    "Web Developer Kenya",
+    "Web Developer Mombasa",
     "React Developer",
     "Portfolio Website",
     "Software Engineer Kenya",
     "Modern Web Developer",
-    "Civil Engineer Student",
   ],
 
   authors: [
     {
-      name: "Swaleh Mohamad",
+      name: "Swaleh Mohamad Swalehe",
       url: "https://portfolio.swaleh.app",
     },
   ],
 
-  creator: "Swaleh Mohamad",
+  creator: "Swaleh Mohamad Swalehe",
 
-  publisher: "Developer Swaleh",
+  publisher: "Swaleh Mohamad",
+
+  applicationName: "Swaleh Mohamad Portfolio",
 
   category: "technology",
 
-  applicationName: "Developer Swaleh Portfolio",
-
   referrer: "origin-when-cross-origin",
+
+  manifest: "/site.webmanifest",
 
   robots: {
     index: true,
@@ -93,7 +92,7 @@ export const metadata: Metadata = {
 
     url: "https://portfolio.swaleh.app",
 
-    siteName: "Developer Swaleh",
+    siteName: "Swaleh Mohamad",
 
     title:
       "Developer Swaleh | Full-Stack Website Developer",
@@ -118,7 +117,7 @@ export const metadata: Metadata = {
       "Developer Swaleh | Full-Stack Website Developer",
 
     description:
-      "Portfolio of Swaleh Mohamad, a modern full-stack website developer building scalable digital experiences.",
+      "Portfolio of Swaleh Mohamad Swalehe, a modern full-stack website developer building scalable digital experiences.",
 
     creator: "@developerswaleh",
 
@@ -129,14 +128,25 @@ export const metadata: Metadata = {
     icon: [
       {
         url: "/favicon.ico",
-        sizes: "96x96",
+        sizes: "96×96",
         type: "image/x-icon",
+      },
+      {
+        url: "/icon.png",
+        sizes: "512x512",
+        type: "image/png",
       },
     ],
 
     shortcut: ["/favicon.ico"],
 
-    apple: ["/favicon.ico"],
+    apple: [
+      {
+        url: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
 };
 
@@ -150,11 +160,38 @@ export const viewport: Viewport = {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Swaleh Mohamad",
+  "@type": "Person",
+
+  name: "Swaleh Mohamad Swalehe",
+
   url: "https://portfolio.swaleh.app",
+
+  image: "https://portfolio.swaleh.app/profile.jpg",
+
+  jobTitle: "Full-Stack Website Developer",
+
   description:
-    "Modern full-stack portfolio website of Swaleh Mohamad.",
+    "Full-stack website developer specializing in Next.js, TypeScript, Supabase, PostgreSQL, scalable frontend systems, backend architecture, and modern web applications.",
+
+  sameAs: [
+    "https://github.com/swachizen/developer-swaleh-portfolio",
+  ],
+
+  worksFor: {
+    "@type": "Organization",
+    name: "Developer Swaleh",
+  },
+
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mombasa",
+    addressCountry: "Kenya",
+  },
+
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Technical University of Mombasa",
+  },
 };
 
 export default function RootLayout({
