@@ -219,9 +219,11 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker
+              window.addEventListener('load', async () => {
+                if (!('serviceWorker' in navigator)) return;
+                  try {
+                   const registration =
+                     await  navigator.serviceWorker
                     .register('/sw.js')
                     .then((registration) => {
                       console.log(
