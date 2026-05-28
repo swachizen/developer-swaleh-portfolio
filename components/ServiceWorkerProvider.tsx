@@ -8,24 +8,31 @@ export default function ServiceWorkerProvider() {
       return;
     }
 
-    const registerSW = async () => {
+    async function init() {
       try {
+        const swUrl = "/sw.js";
+
+        const response = await fetch(swUrl);
+
+        if (!response.ok) {
+          throw new Error(
+            `SW file missing: ${response.status}`
+          );
+        }
+
         const registration =
-          await navigator.serviceWorker.register("/sw.js");
+          await navigator.serviceWorker.register(swUrl);
 
         console.log(
-          "Service Worker registered:",
+          "SW registered:",
           registration.scope
         );
       } catch (error) {
-        console.error(
-          "Service Worker registration failed:",
-          error
-        );
+        console.error(error);
       }
-    };
+    }
 
-    registerSW();
+    init();
   }, []);
 
   return null;
