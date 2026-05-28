@@ -4,35 +4,26 @@ import { useEffect } from "react";
 
 export default function ServiceWorkerProvider() {
   useEffect(() => {
-    if (!("serviceWorker" in navigator)) {
-      return;
-    }
-
-    async function init() {
+    const registerSW = async () => {
       try {
-        const swUrl = "/sw.js";
-
-        const response = await fetch(swUrl);
-
-        if (!response.ok) {
-          throw new Error(
-            `SW file missing: ${response.status}`
-          );
+        if (
+          typeof window === "undefined" ||
+          !("serviceWorker" in navigator)
+        ) {
+          return;
         }
 
-        const registration =
-          await navigator.serviceWorker.register(swUrl);
-
-        console.log(
-          "SW registered:",
-          registration.scope
+        await navigator.serviceWorker.register(
+          "/sw.js"
         );
-      } catch (error) {
-        console.error(error);
-      }
-    }
 
-    init();
+        console.log("SW registered");
+      } catch (error) {
+        console.error("SW failed:", error);
+      }
+    };
+
+    registerSW();
   }, []);
 
   return null;
