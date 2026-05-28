@@ -24,8 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio.swaleh.app"),
 
   title: {
-    default:
-      "Developer Swaleh | Full-Stack Website Developer",
+    default: "Developer Swaleh | Full-Stack Website Developer",
     template: "%s | Developer Swaleh",
   },
 
@@ -68,6 +67,10 @@ export const metadata: Metadata = {
 
   manifest: "/site.webmanifest",
 
+  alternates: {
+    canonical: "https://portfolio.swaleh.app",
+  },
+
   robots: {
     index: true,
     follow: true,
@@ -81,10 +84,6 @@ export const metadata: Metadata = {
     },
   },
 
-  alternates: {
-    canonical: "https://portfolio.swaleh.app",
-  },
-
   openGraph: {
     type: "website",
 
@@ -94,8 +93,7 @@ export const metadata: Metadata = {
 
     siteName: "Swaleh Mohamad",
 
-    title:
-      "Developer Swaleh | Full-Stack Website Developer",
+    title: "Developer Swaleh | Full-Stack Website Developer",
 
     description:
       "Modern full-stack website developer specializing in scalable frontend systems, backend architecture, SQL databases, and high-performance web applications.",
@@ -113,8 +111,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title:
-      "Developer Swaleh | Full-Stack Website Developer",
+    title: "Developer Swaleh | Full-Stack Website Developer",
 
     description:
       "Portfolio of Swaleh Mohamad Swalehe, a modern full-stack website developer building scalable digital experiences.",
@@ -173,9 +170,7 @@ const structuredData = {
   description:
     "Full-stack website developer specializing in Next.js, TypeScript, Supabase, PostgreSQL, scalable frontend systems, backend architecture, and modern web applications.",
 
-  sameAs: [
-    "https://github.com/swachizen/developer-swaleh-portfolio",
-  ],
+  sameAs: ["https://github.com/swachizen/developer-swaleh-portfolio"],
 
   worksFor: {
     "@type": "Organization",
@@ -219,26 +214,26 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.addEventListener('load', async () => {
-                if (!('serviceWorker' in navigator)) return;
-                  try {
-                   const registration =
-                     await  navigator.serviceWorker
-                    .register('/sw.js')
-                    .then((registration) => {
-                      console.log(
-                        'Service Worker registered:',
-                        registration.scope
-                      );
-                    })
-                    .catch((error) => {
-                      console.error(
-                        'Service Worker registration failed:',
-                        error
-                      );
-                    });
-                });
-              }
+              window.addEventListener("load", async () => {
+                if (!("serviceWorker" in navigator)) {
+                  return;
+                }
+
+                try {
+                  const registration =
+                    await navigator.serviceWorker.register("/sw.js");
+
+                  console.log(
+                    "Service Worker registered:",
+                    registration.scope
+                  );
+                } catch (error) {
+                  console.error(
+                    "Service Worker registration failed:",
+                    error
+                  );
+                }
+              });
             `,
           }}
         />
