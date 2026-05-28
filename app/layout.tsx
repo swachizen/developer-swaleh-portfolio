@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "react-hot-toast";
+import ServiceWorkerProvider from "@/components/ServiceWorkerProvider";
 
 import "./globals.css";
 
@@ -209,35 +210,7 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData),
           }}
         />
-
-        {/* PWA Service Worker Registration */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.addEventListener("load", async () => {
-                if (!("serviceWorker" in navigator)) {
-                  return;
-                }
-
-                try {
-                  const registration =
-                    await navigator.serviceWorker.register("/sw.js");
-
-                  console.log(
-                    "Service Worker registered:",
-                    registration.scope
-                  );
-                } catch (error) {
-                  console.error(
-                    "Service Worker registration failed:",
-                    error
-                  );
-                }
-              });
-            `,
-          }}
-        />
-
+       
         {/* Noise Texture */}
         <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.015] [background-image:url('/noise.png')]" />
 
@@ -287,6 +260,7 @@ export default function RootLayout({
 
         {/* Vercel Speed Insights */}
         <SpeedInsights />
+      <ServiceWorkerProvider />
       </body>
     </html>
   );
