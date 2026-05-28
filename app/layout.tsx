@@ -128,7 +128,7 @@ export const metadata: Metadata = {
     icon: [
       {
         url: "/favicon.ico",
-        sizes: "96×96",
+        sizes: "96x96",
         type: "image/x-icon",
       },
       {
@@ -162,11 +162,11 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
 
-  name: "Swaleh Mohamad Swalehe",
+  name: "Swaleh Mohamad Swaleh",
 
   url: "https://portfolio.swaleh.app",
 
-  image: "https://portfolio.swaleh.app/profile.jpg",
+  image: "https://portfolio.swaleh.app/profile.webp",
 
   jobTitle: "Full-Stack Website Developer",
 
@@ -212,6 +212,32 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
+          }}
+        />
+
+        {/* PWA Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker
+                    .register('/sw.js')
+                    .then((registration) => {
+                      console.log(
+                        'Service Worker registered:',
+                        registration.scope
+                      );
+                    })
+                    .catch((error) => {
+                      console.error(
+                        'Service Worker registration failed:',
+                        error
+                      );
+                    });
+                });
+              }
+            `,
           }}
         />
 
